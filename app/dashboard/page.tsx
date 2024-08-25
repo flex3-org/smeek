@@ -5,6 +5,10 @@ import Learn from '../components/dashboard/Learn';
 import Flashcards from '../components/dashboard/Flashcards';
 import Quiz from '../components/dashboard/Quiz';
 import Link from 'next/link';
+import { PiBookThin } from "react-icons/pi";
+import { PiCardsThreeThin } from "react-icons/pi";
+import { PiTestTubeThin } from "react-icons/pi";
+
 
 export default function Dashboard() {
     const searchParams = useSearchParams();
@@ -24,23 +28,23 @@ export default function Dashboard() {
     }
 
     return (
-        <div className="relative bg-yellow-50 overflow-hidden min-h-screen">
+        <div className="relative overflow-hidden min-h-screen">
             <div className="fixed inset-y-0 left-0 bg-white shadow-md max-h-screen w-60">
                 <div className="flex flex-col justify-between h-full">
                     <div className="flex-grow">
                         <div className="px-4 py-6 text-center border-b">
-                            <h1 className="text-xl font-bold">education.ai</h1>
+                            <h1 className="text-xl font-normal">📚 education.ai</h1>
                         </div>
                         <div className="p-4">
                             <div className="flex flex-col gap-1">
-                                <Link href="/dashboard?section=learn" className="flex items-center bg-yellow-200 rounded-xl font-bold text-sm text-yellow-900 py-3 px-4">
-                                    Learn
+                                <Link href="/dashboard?section=learn" className="flex items-center rounded-xl text-sm font-normal py-3 px-4 gap-4">
+                                <PiBookThin/> Learn
                                 </Link>
-                                <Link href="/dashboard?section=flashcards" className="flex items-center bg-yellow-200 rounded-xl font-bold text-sm text-yellow-900 py-3 px-4">
-                                    Flashcards
+                                <Link href="/dashboard?section=flashcards" className="flex items-center rounded-xl text-sm font-normal py-3 px-4 gap-4">
+                                    <PiCardsThreeThin/> Flashcards
                                 </Link>
-                                <Link href="/dashboard?section=quiz" className="flex items-center bg-yellow-200 rounded-xl font-bold text-sm text-yellow-900 py-3 px-4">
-                                    Quiz
+                                <Link href="/dashboard?section=quiz" className="flex items-center rounded-xl text-sm font-normal py-3 px-4 gap-4">
+                                    <PiTestTubeThin/> Quiz
                                 </Link>
                             </div>
                         </div>
