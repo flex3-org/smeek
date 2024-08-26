@@ -1,3 +1,5 @@
+# smeek-web
+
 Web application for **smeek** built in Next.js.
 
 ## Installation
