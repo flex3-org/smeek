@@ -6,7 +6,6 @@ import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import ReactFlow, { MiniMap, Controls, Background } from 'reactflow';
 import 'reactflow/dist/style.css';
-import { data } from "@/utils/data";
 import Modal from "./Modal/Modal";
 
 interface CourseContent {
@@ -17,7 +16,7 @@ interface CourseContent {
 
 export default function Quiz() {
     const [topic, setTopic] = useState<string>("");
-    // const [data, setData] = useState<CourseContent[]>([]);
+    const [data, setData] = useState<CourseContent[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
     const [nodes, setNodes] = useState<any[]>([]);
     const [edges, setEdges] = useState<any[]>([]);
@@ -28,10 +27,10 @@ export default function Quiz() {
         setLoading(true);
 
         try {
-            // const res = await axios.get<CourseContent[]>("http://127.0.0.1:8000/coursecontents", {
-            //     params: { topic: topic }
-            // });
-            const fetchedData = data;  // Fetch data correctly
+            const res = await axios.get<CourseContent[]>("http://127.0.0.1:8000/coursecontents", {
+                params: { topic: topic }
+            });
+            const fetchedData = res.data;  // Fetch data correctly
 
             // Create nodes
             const newNodes = fetchedData.map((item, index) => ({
