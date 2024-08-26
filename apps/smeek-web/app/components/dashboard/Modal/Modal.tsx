@@ -32,7 +32,7 @@ export default function Modal({ modalContent, closeModal }: any) {
                 <div className="flex items-center justify-center mb-6 pt-8">
                     <iframe
                         className="w-[1100px] h-[520px]"
-                        src={`https://www.youtube.com/embed/${modalContent.links[0].split('v=')[1]}`}
+                        src={`https://www.youtube.com/embed/${modalContent.links[0]?.split('v=')[1]}`}
                         title={modalContent.label}
                         allowFullScreen
                     />
