@@ -39,30 +39,28 @@ export default function Modal({ modalContent, closeModal }: any) {
                 </div>
 
                 {/* Sections Navigation */}
-                <div className="bg-white p-4 rounded-md shadow-md mb-6">
-                    <div className="flex gap-4">
-                        <button 
-                            className={`p-2 rounded-md w-full ${activeSection === "chat" ? "bg-gray-400" : "bg-gray-300"}`}
-                            onClick={() => setActiveSection("chat")}
-                        >
-                            Chat
-                        </button>
-                        <button 
-                            className={`p-2 rounded-md w-full ${activeSection === "transcribe" ? "bg-gray-400" : "bg-gray-300"}`}
-                            onClick={() => setActiveSection("transcribe")}
-                        >
-                            Transcribe
-                        </button>
-                        <button 
-                            className={`p-2 rounded-md w-full ${activeSection === "more-videos" ? "bg-gray-400" : "bg-gray-300"}`}
-                            onClick={() => setActiveSection("more-videos")}
-                        >
-                            More Videos
-                        </button>
-                    </div>
-                </div>
-
-                {/* Active Section Content */}
+                 <div className="p-4 rounded-md shadow-md mb-6">
+            <div className="flex gap-5">
+                <button 
+                    className={`p-2 rounded-none text-center ${activeSection === "chat" ? "border-b-4 border-gray-800 text-white" : "text-gray-600"}`}
+                    onClick={() => setActiveSection("chat")}
+                >
+                    Chat
+                </button>
+                <button 
+                    className={`p-2 rounded-none text-center ${activeSection === "transcribe" ? "border-b-4 border-gray-800 text-white" : "text-gray-600"}`}
+                    onClick={() => setActiveSection("transcribe")}
+                >
+                    Transcribe
+                </button>
+                <button 
+                    className={`p-2 rounded-none text-center ${activeSection === "more-videos" ? "border-b-4 border-gray-800 text-white" : "text-gray-600"}`}
+                    onClick={() => setActiveSection("more-videos")}
+                >
+                    More Videos
+                </button>
+            </div>
+        </div>
                 {renderSection()}
             </div>
         </div>

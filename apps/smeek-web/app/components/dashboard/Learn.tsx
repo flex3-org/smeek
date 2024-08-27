@@ -7,6 +7,7 @@ import 'react-loading-skeleton/dist/skeleton.css';
 import ReactFlow, { MiniMap, Controls, Background } from 'reactflow';
 import 'reactflow/dist/style.css';
 import Modal from "./Modal/Modal";
+import { data } from "@/utils/data";
 
 interface CourseContent {
     index: number;
@@ -16,7 +17,7 @@ interface CourseContent {
 
 export default function Quiz() {
     const [topic, setTopic] = useState<string>("");
-    const [data, setData] = useState<CourseContent[]>([]);
+    // const [data, setData] = useState<CourseContent[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
     const [nodes, setNodes] = useState<any[]>([]);
     const [edges, setEdges] = useState<any[]>([]);
@@ -27,16 +28,19 @@ export default function Quiz() {
         setLoading(true);
 
         try {
-            const res = await axios.get<CourseContent[]>("http://127.0.0.1:8000/coursecontents", {
-                params: { topic: topic }
-            });
-            const fetchedData = res.data;  // Fetch data correctly
+            // const res = await axios.get<CourseContent[]>("http://127.0.0.1:8000/coursecontents", {
+            //     params: { topic: topic }
+            // });
+            const fetchedData = data;  // Fetch data correctly
 
-            // Create nodes
+            // Create nodes with increased spacing between rows
             const newNodes = fetchedData.map((item, index) => ({
                 id: `${index + 1}`,
-                data: { label: item.topic, links: item.link },
-                position: { x: (index % 4) * 200, y: Math.floor(index / 4) * 100 },
+                data: {
+                    label: item.topic,
+                    links: item.link
+                },
+                position: { x: (index % 4) * 200, y: Math.floor(index / 4) * 120 },  // Increase y-value for more spacing
             }));
 
             // Create edges (update logic as needed)
@@ -79,7 +83,7 @@ export default function Quiz() {
                         onChange={(e) => setTopic(e.target.value)}
                     />
                     <button
-                        className="bg-gray-500 px-6 py-1 text-white rounded-md flex items-center gap-1"
+                        className="bg-[#333333] px-6 py-1 text-white rounded-md flex items-center gap-1"
                         onClick={getCourseContent}
                     >
                         Learn <FaSearch size={16} />
@@ -99,7 +103,6 @@ export default function Quiz() {
                         >
                             <MiniMap />
                             <Controls />
-                            <Background />
                         </ReactFlow>
                     </div>
                 )}
@@ -119,3 +122,4 @@ export default function Quiz() {
         </>
     );
 }
+
