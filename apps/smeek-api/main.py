@@ -2,7 +2,7 @@ from fastapi import FastAPI, UploadFile, File
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from app.coursecontents import llama3, get_yt_links
-from app.chatbot import ask_anything
+from app.chatbot import get_chatbot_response, ChatInput
 from app.quiz import extract_text_from_pdf, chunk_text, get_json
 from app.flashcard import generate_flashcards
 
@@ -27,11 +27,11 @@ async def course_content(topic: str):
     ]
     return JSONResponse(content=content, media_type="application/json")
 
-@app.get("/chatbot/")
-async def chatbot_interaction(inp: str):
-    response = ask_anything(inp)
-    result = {"response": response}
-    return JSONResponse(content=result, media_type="application/json")
+@app.get("/chat/")
+async def chat_endpoint(chat_input: ChatInput):
+    response = get_chatbot_response(chat_input.user_input)
+    return JSONResponse(content={"response": response}, media_type="application/json")
+
 
 @app.get("/quiz/")
 async def quiz_from_pdf(file: UploadFile = File(...)):
