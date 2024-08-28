@@ -5,6 +5,8 @@ from app.coursecontents import llama3, get_yt_links
 from app.chatbot import get_chatbot_response, ChatInput
 from app.quiz import extract_text_from_pdf, chunk_text, get_json
 from app.flashcard import generate_flashcards
+from app.summarize import summarize_youtube_video
+
 
 app = FastAPI()
 
@@ -52,3 +54,8 @@ async def flashcards_from_pdf(file: UploadFile = File(...)):
         f.write(content)
     flashcards = generate_flashcards(file.filename)
     return JSONResponse(content=flashcards, media_type="application/json")
+
+@app.get("/summary/")
+async def summary(url: str):
+    summary = summarize_youtube_video(url)
+    return JSONResponse(content={"response": summary}, media_type="application/json")
