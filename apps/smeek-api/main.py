@@ -29,7 +29,7 @@ async def course_content(topic: str):
     ]
     return JSONResponse(content=content, media_type="application/json")
 
-@app.get("/chat/")
+@app.post("/chat/")
 async def chat_endpoint(chat_input: ChatInput):
     response = get_chatbot_response(chat_input.user_input)
     return JSONResponse(content={"response": response}, media_type="application/json")
