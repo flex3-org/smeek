@@ -16,7 +16,7 @@ interface CourseContent {
 
 export default function Quiz() {
     const [topic, setTopic] = useState<string>("");
-    // const [data, setData] = useState<CourseContent[]>([]);
+    const [courseData, setCourseData] = useState<CourseContent[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
     const [nodes, setNodes] = useState<any[]>([]);
     const [edges, setEdges] = useState<any[]>([]);
@@ -52,7 +52,7 @@ export default function Quiz() {
 
             setNodes(newNodes);
             setEdges(newEdges);
-            setData(fetchedData);
+            setCourseData(fetchedData);
         } catch (err) {
             console.error(err);
         } finally {
