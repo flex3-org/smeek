@@ -2,9 +2,9 @@
 
 import { useState } from 'react';
 import { useSearchParams } from 'next/navigation';
-import Learn from '../components/dashboard/Learn';
-import Flashcards from '../components/dashboard/Flashcards';
-import Quiz from '../components/dashboard/Quiz';
+import Learn from '../components/dashboard/Learn/Learn';
+import Flashcards from '../components/dashboard/Flashcards/Flashcards';
+import Quiz from '../components/dashboard/Quiz/Quiz';
 import Link from 'next/link';
 import { PiBookThin } from "react-icons/pi";
 import { PiCardsThreeThin } from "react-icons/pi";

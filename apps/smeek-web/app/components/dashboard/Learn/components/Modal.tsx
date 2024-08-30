@@ -24,14 +24,14 @@ export default function Modal({ modalContent, closeModal }: any) {
 
     return (
         <div className="fixed inset-0 flex justify-end items-center bg-black bg-opacity-50 z-50">
-            <div className="bg-black w-3/4 h-full p-4 overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+            <div className="bg-white w-3/4 h-full p-4 overflow-y-auto" onClick={(e) => e.stopPropagation()}>
                 <div className="flex items-center justify-between">
-                    <h1 className="text-white text-xl pt-3 font-bold">{modalContent.label} - </h1>
-                    <IoClose onClick={closeModal} className="text-white text-xl"/>
+                    <h1 className="text-xl pt-3 font-bold">{modalContent.label} - </h1>
+                    <IoClose onClick={closeModal} className="text-xl"/>
                 </div>
                 <div className="flex items-center justify-center mb-6 pt-8">
                     <iframe
-                        className="w-[1100px] h-[520px]"
+                        className="w-[900px] h-[520px]"
                         src={`https://www.youtube.com/embed/${modalContent.links[0]?.split('v=')[1]}`}
                         title={modalContent.label}
                         allowFullScreen
@@ -39,22 +39,22 @@ export default function Modal({ modalContent, closeModal }: any) {
                 </div>
 
                 {/* Sections Navigation */}
-                 <div className="p-4 rounded-md shadow-md mb-6">
+                 <div className="p-4 mb-6">
             <div className="flex gap-5">
                 <button 
-                    className={`p-2 rounded-none text-center ${activeSection === "chat" ? "border-b-4 border-gray-800 text-white" : "text-gray-600"}`}
+                    className={`p-2 rounded-none text-center ${activeSection === "chat" ? "border-b-4 border-gray-800" : "text-gray-600"}`}
                     onClick={() => setActiveSection("chat")}
                 >
                     Chat
                 </button>
                 <button 
-                    className={`p-2 rounded-none text-center ${activeSection === "transcribe" ? "border-b-4 border-gray-800 text-white" : "text-gray-600"}`}
+                    className={`p-2 rounded-none text-center ${activeSection === "transcribe" ? "border-b-4 border-gray-800" : "text-gray-600"}`}
                     onClick={() => setActiveSection("transcribe")}
                 >
                     Transcribe
                 </button>
                 <button 
-                    className={`p-2 rounded-none text-center ${activeSection === "more-videos" ? "border-b-4 border-gray-800 text-white" : "text-gray-600"}`}
+                    className={`p-2 rounded-none text-center ${activeSection === "more-videos" ? "border-b-4 border-gray-800" : "text-gray-600"}`}
                     onClick={() => setActiveSection("more-videos")}
                 >
                     More Videos

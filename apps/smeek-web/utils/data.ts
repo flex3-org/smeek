@@ -160,3 +160,83 @@ export const data = [
       ]
     }
   ]
+
+export const quizData = [
+  {
+    "question": "What is the ultimate goal of biochemistry?",
+    "type": "multiple_choice",
+    "options": [
+      "To explain all life processes in molecular detail.",
+      "To create new medicines and treatments.",
+      "To understand how cells work.",
+      "To study the structure of biomolecules."
+    ],
+    "correct_answer": "To explain all life processes in molecular detail."
+  },
+  {
+    "question": "What is the primary function of ATP in a cell?",
+    "type": "multiple_choice",
+    "options": [
+      "A source of structural support for biomolecules",
+      "The major energy currency of the cell, used to power energy-requiring reactions",
+      "A component of DNA and RNA",
+      "A type of lipid found in cell membranes"
+    ],
+    "correct_answer": "The major energy currency of the cell, used to power energy-requiring reactions"
+  },
+  {
+    "question": "What is the primary focus of biochemistry, as presented in this content?",
+    "type": "multiple_choice",
+    "options": [
+      "The structure and function of biomolecules such as proteins and DNA.",
+      "The properties of water that affect the structure and function of biomolecules.",
+      "The rate at which a reaction takes place and how the reaction gets from start to finish.",
+      "The thermodynamic favorability of a reaction."
+    ],
+    "correct_answer": "The structure and function of biomolecules such as proteins and DNA."
+  },
+  {
+    "question": "What is the average number of hydrogen bonds each water molecule forms in liquid water?",
+    "type": "multiple_choice",
+    "options": [
+      "1.5 others",
+      "2.5 others",
+      "~3.4 others",
+      "4 others"
+    ],
+    "correct_answer": "~3.4 others"
+  },
+  {
+    "question": "What are the types of noncovalent interactions summarized in Fig. 2.13?",
+    "type": "multiple_choice",
+    "options": [
+      "A. Charge-charge interactions, H-bonds, and van der Waals forces only.",
+      "B. Ionization of water, peptide bond hydrolysis, and salt-bridges.",
+      "C. Hydrogen bonding, ionic bonds, and van der Waals forces.",
+      "D. Hydrophobic interactions, electrostatic attractions, and π-pi stacking."
+    ],
+    "correct_answer": "A. Charge-charge interactions, H-bonds, and van der Waals forces only."
+  },
+  {
+    "question": "What is the definition of pH in terms of hydrogen ion concentration?",
+    "type": "multiple_choice",
+    "options": [
+      "pH = log [H+]",
+      "pH = -log [H+]",
+      "pH = [H+] / 14",
+      "pH = [H+] x 10"
+    ],
+    "correct_answer": "pH = -log [H+]"
+  },
+  {
+    "question": "Why does pH = pKa at the midpoint of the titration curve?",
+    "type": "multiple_choice",
+    "options": [
+      "Because [A-] = [HA] at the midpoint",
+      "Because the strong base has been fully added at the midpoint",
+      "Because the weak acid has been fully dissociated at the midpoint",
+      "Because pH = pKa + log([A-]/[HA]"
+    ],
+    "correct_answer": "Because [A-] = [HA] at the midpoint"
+  }
+]

@@ -1,12 +1,11 @@
 "use client";
-import axios from "axios";
 import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import ReactFlow, { MiniMap, Controls, Background } from 'reactflow';
 import 'reactflow/dist/style.css';
-import Modal from "./Modal/Modal";
+import Modal from "./components/Modal";
 import { data } from "@/utils/data";
 
 interface CourseContent {

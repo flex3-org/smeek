@@ -25,15 +25,15 @@ function VideoCard({ link, index }: VideoCardProps) {
     }, [link, index]);
 
     return (
-        <div className="px-2 border rounded-md shadow-lg">
+        <div className="border rounded-md shadow-xl">
             <img
-                className="w-full h-40 object-cover mb-1"
+                className="w-full rounded-md h-40 object-cover mb-1"
                 src={`https://img.youtube.com/vi/${link.split('v=')[1]}/hqdefault.jpg`}
                 alt={`Video ${index + 1}`}
             />
             <a
                 href={link}
-                className="text-blue-300 hover:underline block mb-1"
+                className="hover:underline block p-2 text-center"
                 target="_blank"
                 rel="noopener noreferrer"
             >
@@ -45,7 +45,7 @@ function VideoCard({ link, index }: VideoCardProps) {
 
 export default function VideoGrid({ links }: { links: string[] }) {
     return (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-8">
             {links.map((link, index) => (
                 <VideoCard key={index} link={link} index={index} />
             ))}
