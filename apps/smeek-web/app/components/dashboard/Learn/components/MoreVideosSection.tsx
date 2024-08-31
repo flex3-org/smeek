@@ -25,7 +25,7 @@ function VideoCard({ link, index }: VideoCardProps) {
     }, [link, index]);
 
     return (
-        <div className="border rounded-md shadow-xl">
+        <div className="border rounded-md shadow-xl mb-16">
             <img
                 className="w-full rounded-md h-40 object-cover mb-1"
                 src={`https://img.youtube.com/vi/${link.split('v=')[1]}/hqdefault.jpg`}

@@ -240,3 +240,43 @@ export const quizData = [
     "correct_answer": "Because [A-] = [HA] at the midpoint"
   }
 ]
+
+export const flashcards =
+  [
+    {
+      "title": "The Science of Biochemistry",
+      "description": "The ultimate goal of biochemistry is to explain all life processes in molecular detail. Because life processes are performed by organic molecules the discipline of biochemistry relies heavily on fundamental principles of organic chemistry and other basic sciences."
+    },
+    {
+      "title": "Historical Overview of Biochemists",
+      "description": "The text provides an historical overview of some of the key contributions of the early chemists, and of modern 20th century biochemists who have lead the discipline to where it is today."
+    },
+    {
+      "title": "Structure of DNA Double Helix",
+      "description": "About the structure of the DNA 'double helix' by Watson & Crick and the development of DNA sequencing methods by Fredrick Sanger."
+    },
+    {
+      "title": "Carbon-Based Compounds in Living Organisms",
+      "description": "The biomolecules such as proteins that are present in living organisms are carbon-based compounds. Carbon is the third most abundant element in living organisms (relative abundance H > O > C > N > P > S)."
+    },
+    {
+      "title": "Representations of Molecular Structures",
+      "description": "Your text will use skeletal, ball & stick, and space-filling models to show molecular structures. Therefore, you must be familiar with each of these types of representations."
+    },
+    {
+      "title": "Molecules",
+      "description": "i.e., the surfaces of closest possible approach by neighboring molecules. B. Chemical bonding. If necessary, please review the supplemental notes at the end of this section concerning the atomic and molecular (bonding) orbitals of carbon, nitrogen, and oxygen. sp3 and sp2 molecular orbitals are the most prevalent in biomolecules."
+    },
+    {
+      "title": "Chemical Bonding",
+      "description": "The orientations of bonding orbitals in space ultimately determine the shapes of biomolecules."
+    },
+    {
+      "title": "Functional Groups",
+      "description": "The chemical reactions of biomolecules are dictated by the functional groups they contain. Fig. 1.2. shows the general formulas of common organic compounds and functional groups that will be encountered constantly in the proteins, carbohydrates, nucleic acids and simple metabolites you will study."
+    },
+    {
+      "title": "Many Biomolecules are Polymers",
+      "description": "The principle biomolecules in cells (proteins,)"
+    }
+]

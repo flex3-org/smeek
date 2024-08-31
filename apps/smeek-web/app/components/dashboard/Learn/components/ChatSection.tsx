@@ -33,7 +33,7 @@ export default function ChatSection() {
   };
 
   return (
-    <div className="flex flex-col p-4">
+    <div className="flex flex-col px-4 pt-20">
       <div className="flex-grow overflow-auto">
         <div className="space-y-4">
           {messages.map((msg, index) => (

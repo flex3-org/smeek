@@ -68,7 +68,7 @@ def llama3_summarize(text):
 
 # Main function to summarize a YouTube video
 def summarize_youtube_video(youtube_url):
-    audio_path = "/home/kirtan/smeek/apps/smeek-api/temp_audio.wav"
+    audio_path = "temp_audio.wav"
     
     # Download audio from YouTube video
     download_audio(youtube_url, audio_path)

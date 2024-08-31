@@ -84,8 +84,7 @@ const QuizComponent: React.FC<QuizComponentProps> = ({ data }) => {
                                             labels[idx]
                                         )}
                                     </span>
-
-                                    <span className="flex-1">{option}</span>
+                                    <span className="flex-1 text-black">{option}</span>
                                 </label>
                             );
                         })}
