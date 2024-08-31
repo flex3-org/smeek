@@ -35,7 +35,7 @@ async def chat_endpoint(chat_input: ChatInput):
     return JSONResponse(content={"response": response}, media_type="application/json")
 
 
-@app.get("/quiz/")
+@app.post("/quiz/")
 async def quiz_from_pdf(file: UploadFile = File(...)):
     content = await file.read()
     with open(file.filename, 'wb') as f:
