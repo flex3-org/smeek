@@ -1,4 +1,17 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
-
-export default nextConfig;
+const nextConfig = {
+    experimental: {
+      missingSuspenseWithCSRBailout: false,
+    },
+    images: {
+      remotePatterns: [
+        {
+          protocol: 'https',
+          hostname: 'img.youtube.com',
+        },
+      ],
+    },
+  };
+  
+  export default nextConfig;
+  

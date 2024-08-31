@@ -1,28 +1,33 @@
 import { IoIosSend } from "react-icons/io";
 import axios from "axios";
 import { useState } from "react";
+import Markdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 interface Message {
   text: string;
-  type: 'user' | 'bot';
+  type: "user" | "bot";
 }
 
 export default function ChatSection() {
   const [userInput, setUserInput] = useState<string>("");
   const [messages, setMessages] = useState<Message[]>([]);
-  const [loading, setLoading] = useState<boolean>(false); // Add loading state
+  const [loading, setLoading] = useState<boolean>(false);
 
   const chat = async () => {
     try {
       setLoading(true); // Set loading to true when starting request
-      const res = await axios.post<{ response: string }>('http://127.0.0.1:8000/chat', {
-          user_input: userInput
-      });
+      const res = await axios.post<{ response: string }>(
+        "http://127.0.0.1:8000/chat",
+        {
+          user_input: userInput,
+        }
+      );
 
-      setMessages(prevMessages => [
+      setMessages((prevMessages) => [
         ...prevMessages,
-        { text: userInput, type: 'user' },
-        { text: res?.data?.response, type: 'bot' }
+        { text: userInput, type: "user" },
+        { text: res?.data?.response, type: "bot" },
       ]);
       setUserInput(""); // Clear input field
     } catch (err) {
@@ -32,20 +37,30 @@ export default function ChatSection() {
     }
   };
 
+  console.log(messages);
   return (
     <div className="flex flex-col px-4 pt-20">
       <div className="flex-grow overflow-auto">
         <div className="space-y-4">
           {messages.map((msg, index) => (
-            <div key={index} className={`flex ${msg.type === 'user' ? 'justify-end' : 'justify-start'}`}>
-              <div className={`p-3 rounded-lg ${msg.type === 'user' ? 'bg-blue-500 text-white' : 'bg-gray-300'}`}>
-                {msg.text}
+            <div
+              key={index}
+              className={`flex ${
+                msg.type === "user" ? "justify-end" : "justify-start"
+              }`}
+            >
+              <div
+                className={`p-3 rounded-lg ${
+                  msg.type === "user" ? "bg-blue-500 text-white" : "bg-gray-300"
+                }`}
+              >
+                <Markdown remarkPlugins={[remarkGfm]}>{msg.text}</Markdown>
               </div>
             </div>
           ))}
           {loading && (
             <div className="flex justify-center">
-              <div className="animate-spin rounded-full border-t-2 border-blue-500 border-solid w-8 h-8"></div> {/* Spinner */}
+              <p className="text-sm font-semibold">Smeek is thinking 🧠...</p>
             </div>
           )}
         </div>
@@ -60,6 +75,7 @@ export default function ChatSection() {
             placeholder="Message Smeek"
           />
           <button
+            type="submit"
             onClick={chat}
             className="bg-gray-300 p-2 inline-flex items-center justify-center w-12 h-12 rounded-full"
           >
