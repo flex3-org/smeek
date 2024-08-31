@@ -47,7 +47,7 @@ async def quiz_from_pdf(file: UploadFile = File(...)):
         quiz.append(get_json(chunk))
     return JSONResponse(content=quiz, media_type="application/json")
 
-@app.get("/flashcards/")
+@app.post("/flashcards/")
 async def flashcards_from_pdf(file: UploadFile = File(...)):
     content = await file.read()
     with open(file.filename, 'wb') as f:
