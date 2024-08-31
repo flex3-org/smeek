@@ -14,7 +14,7 @@ def extract_text_from_pdf(pdf_path):
     return text
 
 # Step 2: Chunk the Text Manually
-def chunk_text(text, max_length=5000):
+def chunk_text(text, max_length=500):
     words = text.split()
     chunks = []
     current_chunk = []
