@@ -8,26 +8,26 @@ const featuresData = [
     icon: FaBookReader,
     title: "Learn",
     description:
-      "Meticulously plan and execute a diverse range of events, from workshops to hosting challenges, fostering hands-on learning experiences.",
+      "Generates a custom list of topics for any subject you want to learn and provides YouTube links for each topic to streamline your learning process.",
   },
   {
     icon: PiCardsFill,
     title: "Flashcards",
     description:
-      "Create a platform for educators to share their knowledge and engage with learners, providing valuable insights and guidance.",
+      "Upload a PDF, and the app extracts key points to create flashcards, making it easier to review and retain essential information.",
   },
   {
     icon: MdQuiz,
     title: "Quiz",
     description:
-      "Encourage coding practices and projects by organizing coding sessions, hackathons, and collaborative development opportunities.",
+      "The Quiz feature turns your PDF content into quiz questions, helping with self-assessment and custom quiz creation based on study materials.",
   },
 ];
 
 export default function Features() {
   return (
     <>
-      <div className="h-screen">
+      <div className="pb-32">
         <h1 className="text-center text-4xl font-bold md:pt-32 pt-8">
           Features
         </h1>
