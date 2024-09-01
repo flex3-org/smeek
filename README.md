@@ -1,4 +1,4 @@
-![smeek-img](https://github.com/user-attachments/assets/a18e81f2-6e32-46bd-9b61-05fc02299c64)
+![smeek-img](https://github.com/user-attachments/assets/e72a13e8-d12f-43fc-b33e-32c30c7f4edd)
 
 <h3 align="center">Smeek</h3>
 
