@@ -1,26 +1,50 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ChatSection from "./ChatSection";
 import SummarySection from "./SummarySection";
 import MoreVideosSection from "./MoreVideosSection";
 MoreVideosSection;
+import axios from "axios";
 import { IoClose } from "react-icons/io5";
 
 export default function Modal({ modalContent, closeModal }: any) {
   const [activeSection, setActiveSection] = useState<string>("chat");
+  const [summary, setSummary] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
 
   const renderSection = () => {
     switch (activeSection) {
       case "chat":
         return <ChatSection />;
-      case "transcribe":
-        return <SummarySection link={modalContent.links[0]?.split("v=")[1]} />;
+      case "summary":
+        return <SummarySection summary={summary} loading={loading} />;
       case "more-videos":
         return <MoreVideosSection links={modalContent.links.slice(1)} />;
       default:
         return null;
     }
   };
+
+  const getSummary = async () => {
+    setLoading(true);
+    try {
+      const res = await axios.get("http://127.0.0.1:8000/summary", {
+        params: {
+          url: modalContent.links[0]?.split("v=")[1],
+        },
+      });
+      console.log(res.data);
+      setSummary(res.data);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // useEffect(() => {
+  //   getSummary();
+  // }, []);
 
   return (
     <div className="fixed inset-0 flex justify-end items-center bg-black bg-opacity-50 z-50">
@@ -58,13 +82,13 @@ export default function Modal({ modalContent, closeModal }: any) {
             </button>
             <button
               className={`p-2 rounded-none text-center ${
-                activeSection === "transcribe"
+                activeSection === "summary"
                   ? "border-b-4 border-gray-800"
                   : "text-gray-600"
               }`}
-              onClick={() => setActiveSection("transcribe")}
+              onClick={() => setActiveSection("summary")}
             >
-              Transcribe
+              Summary
             </button>
             <button
               className={`p-2 rounded-none text-center ${

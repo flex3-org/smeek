@@ -1,42 +1,20 @@
 import { useState } from "react";
 import axios from "axios";
+import Image from "next/image";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import summaryImg from "../../../../../public/summary.png";
 
-interface VideoLinkProps {
-  link: string;
+interface SummaryProps {
+  summary: string;
+  loading: boolean;
 }
 
-export default function SummarySection({ link }: VideoLinkProps) {
-  const [loading, setLoading] = useState<boolean>(false);
-  const [summary, setSummary] = useState<string>("");
-
-  const getSummary = async () => {
-    try {
-      setLoading(true); // Set loading to true when starting request
-      const res = await axios.get("http://127.0.0.1:8000/summary", {
-        params: {
-          url: link,
-        },
-      });
-      console.log(res.data);
-      setSummary(res.data);
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setLoading(false); // Set loading to false when request is complete
-    }
-  };
+export default function SummarySection({ summary, loading }: SummaryProps) {
   return (
     <>
       <div>
-        <button
-          className="bg-[#333333] px-6 py-1 text-white rounded-md flex items-center gap-1"
-          onClick={getSummary}
-        >
-          Get Summary
-        </button>
-        {loading ? (
+        {/* {loading ? (
           <>
             <div>
               <p className="text-sm font-semibold pt-3">
@@ -44,15 +22,16 @@ export default function SummarySection({ link }: VideoLinkProps) {
               </p>
             </div>
           </>
-        ) : (
-          <>
-            <div className="flex">
-              <div className="p-3 rounded-lg">
-                <Markdown remarkPlugins={[remarkGfm]}>{summary}</Markdown>
-              </div>
+        ) : ( */}
+        <>
+          <div className="flex">
+            <Image width={700} height={700} src={summaryImg} alt="" />
+            <div className="p-3 rounded-lg">
+              <Markdown remarkPlugins={[remarkGfm]}>{summary}</Markdown>
             </div>
-          </>
-        )}
+          </div>
+        </>
+        {/* )} */}
       </div>
     </>
   );
