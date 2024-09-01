@@ -16,6 +16,10 @@ This application provides various educational services, including course content
 4. **Flashcard Generation from PDF**:
    - Upload a PDF, and the application will generate flashcards with key points extracted from the text.
 
+5. **YouTube Video Summarization**:
+   - Summarizes the content of a YouTube video based on the provided URL.
+
+
 ## Installation
 
 1. **Clone the repository**:
@@ -57,36 +61,35 @@ This application provides various educational services, including course content
 
 ## API Endpoints
 
-### 1. Course Content
+### 1. Course Content Generation
 - **Endpoint**: `/coursecontents/`
 - **Method**: `GET`
-- **Parameters**: 
-  - `topic`: (str) The subject/topic for which you want to generate course content.
-- **Response**:
-  - JSON array of topics and YouTube links.
+- **Query Parameter**: `topic` (e.g., `"Python"`)
+- **Response**: JSON containing a list of topics and corresponding YouTube links.
 
 ### 2. Chatbot Interaction
-- **Endpoint**: `/chatbot/`
-- **Method**: `GET`
-- **Parameters**:
-  - `inp`: (str) The question or input you want to ask the chatbot.
-- **Response**:
-  - JSON object with the chatbot's response.
+- **Endpoint**: `/chat/`
+- **Method**: `POST`
+- **Request Body**: JSON containing `user_input` (e.g., `{"user_input": "Explain neural networks"}`)
+- **Response**: JSON containing the chatbot's response.
 
-### 3. Quiz Creation from PDF
+### 3. Quiz Generation from PDF
 - **Endpoint**: `/quiz/`
-- **Method**: `GET`
-- **Parameters**:
-  - `file`: (UploadFile) The PDF file from which the quiz is generated.
-- **Response**:
-  - JSON array of quiz questions.
+- **Method**: `POST`
+- **Request Body**: Upload a PDF file.
+- **Response**: JSON containing generated quiz questions.
 
 ### 4. Flashcard Generation from PDF
 - **Endpoint**: `/flashcards/`
+- **Method**: `POST`
+- **Request Body**: Upload a PDF file.
+- **Response**: JSON containing generated flashcards.
+
+### 5. YouTube Video Summarization
+- **Endpoint**: `/summary/`
 - **Method**: `GET`
-- **Parameters**:
-  - `file`: (UploadFile) The PDF file from which flashcards are generated.
-- **Response**:
-  - JSON array of flashcards.
+- **Query Parameter**: `url` (e.g., `"https://www.youtube.com/watch?v=dQw4w9WgXcQ"`)
+- **Response**: JSON containing the summary of the video.
+
 
 
