@@ -34,13 +34,25 @@ export default function SummarySection({ link }: VideoLinkProps) {
           className="bg-[#333333] px-6 py-1 text-white rounded-md flex items-center gap-1"
           onClick={getSummary}
         >
-          Learn
+          Get Summary
         </button>
-        <div className="flex">
-          <div className="p-3 rounded-lg">
-            <Markdown remarkPlugins={[remarkGfm]}>{summary}</Markdown>
-          </div>
-        </div>
+        {loading ? (
+          <>
+            <div>
+              <p className="text-sm font-semibold pt-3">
+                Smeek is summarzing... 🧠
+              </p>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="flex">
+              <div className="p-3 rounded-lg">
+                <Markdown remarkPlugins={[remarkGfm]}>{summary}</Markdown>
+              </div>
+            </div>
+          </>
+        )}
       </div>
     </>
   );

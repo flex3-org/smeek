@@ -30,6 +30,17 @@ const QuizComponent: React.FC<QuizComponentProps> = ({ data }) => {
 
   const labels = ["A", "B", "C", "D"];
 
+  // Calculate correct and incorrect answers
+  const totalQuestions = data.length;
+  const correctAnswers = Object.keys(selectedAnswers).reduce(
+    (count, key) =>
+      selectedAnswers[parseInt(key)] === data[parseInt(key)].correct_answer
+        ? count + 1
+        : count,
+    0
+  );
+  const incorrectAnswers = totalQuestions - correctAnswers;
+
   return (
     <div className="max-w-3xl mx-auto p-4">
       {data.map((questionItem: QuizItem, index: number) => (
@@ -109,23 +120,26 @@ const QuizComponent: React.FC<QuizComponentProps> = ({ data }) => {
       )}
 
       {submitted && (
-        <div className="mt-4">
-          <h3 className="text-2xl font-bold">Results:</h3>
-          <ul>
-            {data.map((questionItem: QuizItem, index: number) => (
-              <li key={index} className="mt-2">
-                {selectedAnswers[index] === questionItem.correct_answer ? (
-                  <span className="text-green-500">
-                    Question {index + 1}: Correct
-                  </span>
-                ) : (
-                  <span className="text-red-500">
-                    Question {index + 1}: Incorrect
-                  </span>
-                )}
-              </li>
-            ))}
-          </ul>
+        <div className="mt-8 bg-gray-200 p-5 rounded-lg">
+          <div className="flex flex-col gap-4">
+            <div className="flex items-center justify-between">
+              <h3 className="text-lg font-semibold">Your Score:</h3>
+              <p>
+                <span className="text-xl">{correctAnswers.toFixed(0)} / </span>
+                <span className="text-base text-gray-500">
+                  {totalQuestions}
+                </span>
+              </p>
+            </div>
+            <div className="flex items-center justify-between">
+              <h3 className="text-lg font-semibold">Correct Answers:</h3>
+              <p>{correctAnswers}</p>
+            </div>
+            <div className="flex items-center justify-between">
+              <h3 className="text-lg font-semibold">Incorrect Answers:</h3>
+              <p>{incorrectAnswers}</p>
+            </div>
+          </div>
         </div>
       )}
     </div>
