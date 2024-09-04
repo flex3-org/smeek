@@ -2,7 +2,7 @@ import { FaSearch } from "react-icons/fa";
 import { useState } from "react";
 import FlashcardsComponent from "./components/FlashcardsComponent";
 import axios from "axios";
-import { flashcards } from "@/utils/data";
+import { flashcardsData } from "@/utils/data";
 
 interface FlashcardItem {
   title: string;
@@ -29,20 +29,20 @@ export default function Flashcards() {
 
     setLoading(true);
     try {
-      const formData = new FormData();
-      formData.append("file", selectedFile);
+      // const formData = new FormData();
+      // formData.append("file", selectedFile);
 
-      const res = await axios.post<FlashcardItem[]>(
-        "http://127.0.0.1:8000/flashcards",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+      // const res = await axios.post<FlashcardItem[]>(
+      //   "http://127.0.0.1:8000/flashcards",
+      //   formData,
+      //   {
+      //     headers: {
+      //       "Content-Type": "multipart/form-data",
+      //     },
+      //   }
+      // );
 
-      const fetchedData = res.data;
+      const fetchedData = flashcardsData;
       setFlashcards(fetchedData);
     } catch (err) {
       console.error(err);
@@ -56,7 +56,8 @@ export default function Flashcards() {
       <div className="flex items-center gap-8">
         <input
           type="file"
-          className="bg-gray-300 p-2 rounded-md"
+          accept="application/pdf,application/vnd.ms-excel"
+          className="bg-gray-100 p-2 rounded-md"
           onChange={handleFileChange}
         />
         <button

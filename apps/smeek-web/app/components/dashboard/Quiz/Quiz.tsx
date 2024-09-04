@@ -30,20 +30,20 @@ export default function Quiz() {
 
     setLoading(true);
     try {
-      const formData = new FormData();
-      formData.append("file", selectedFile);
+      // const formData = new FormData();
+      // formData.append("file", selectedFile);
 
-      const res = await axios.post<QuizItem[]>(
-        "http://127.0.0.1:8000/quiz/",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+      // const res = await axios.post<QuizItem[]>(
+      //   "http://127.0.0.1:8000/quiz/",
+      //   formData,
+      //   {
+      //     headers: {
+      //       "Content-Type": "multipart/form-data",
+      //     },
+      //   }
+      // );
 
-      const fetchedData = res.data; // assuming response data is QuizItem[]
+      const fetchedData = quizData; // assuming response data is QuizItem[]
       setQuiz(fetchedData);
     } catch (err) {
       console.error(err);
@@ -57,7 +57,8 @@ export default function Quiz() {
       <div className="flex items-center gap-8">
         <input
           type="file"
-          className="bg-gray-300 p-2 rounded-md"
+          accept="application/pdf,application/vnd.ms-excel"
+          className="bg-gray-100 p-2 rounded-md"
           onChange={handleFileChange}
         />
         <button

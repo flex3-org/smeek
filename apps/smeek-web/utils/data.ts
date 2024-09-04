@@ -241,7 +241,7 @@ export const quizData = [
   }
 ]
 
-export const flashcards =
+export const flashcardsData =
   [
     {
       "title": "The Science of Biochemistry",
