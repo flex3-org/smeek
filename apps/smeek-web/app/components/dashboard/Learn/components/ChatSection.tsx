@@ -51,7 +51,9 @@ export default function ChatSection() {
             >
               <div
                 className={`p-3 rounded-lg ${
-                  msg.type === "user" ? "bg-blue-500 text-white" : "bg-gray-300"
+                  msg.type === "user"
+                    ? "bg-blue-500 text-white"
+                    : "bg-gray-300 w-[70%]"
                 }`}
               >
                 <Markdown remarkPlugins={[remarkGfm]}>{msg.text}</Markdown>
