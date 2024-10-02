@@ -1,7 +1,4 @@
-import pymupdf  # PyMuPDF
-import re
-import json
-# import ollama
+import pymupdf
 import time
 from dotenv import load_dotenv
 import os

@@ -1,13 +1,9 @@
 import yt_dlp
 import numpy as np
 import librosa
-import requests
-import re
-import json
 import torch
 import os
 from transformers import pipeline
-import os
 import google.generativeai as genai
 from dotenv import load_dotenv
 

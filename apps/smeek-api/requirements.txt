@@ -3,3 +3,9 @@ python-dotenv
 fastapi
 uvicorn
 youtube-search-python
+pymupdf
+transformers
+torch
+librosa
+numpy
+yt-dlp

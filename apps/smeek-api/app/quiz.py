@@ -1,8 +1,4 @@
-import pymupdf  # PyMuPDF
-import requests
-import ast
-import json
-import ollama
+import pymupdf
 import re
 import google.generativeai as genai
 from dotenv import load_dotenv
