@@ -1,6 +1,7 @@
 import os
 import google.generativeai as genai
 from dotenv import load_dotenv
+from youtubesearchpython import VideosSearch
 import ast
 
 # Load environment variables from .env file
