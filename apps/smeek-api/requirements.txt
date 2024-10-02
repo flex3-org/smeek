@@ -9,3 +9,4 @@ torch
 librosa
 numpy
 yt-dlp
+python-multipart
