@@ -78,31 +78,36 @@ def get_json(quiz):
     ])
 
     response = chat_session.send_message(quiz)
+    if response._done:  # Ensure the response is done
+        # Access the first candidate's content
+        text_content = response._result.candidates[0].content.parts[0].text
 
-    print(response.text)
-    ans = response.text
-    pattern = re.compile(r'"(\w+)":\s*("(?:[^"\\]|\\.)*?"|\(.*?\))', re.DOTALL)
+        ans = text_content
+        pattern = re.compile(r'"(\w+)":\s*("(?:[^"\\]|\\.)*?"|\(.*?\))',
+                             re.DOTALL)
 
-    # Find all key-value pairs
-    matches = pattern.findall(ans)
+        # Find all key-value pairs
+        matches = pattern.findall(ans)
 
-    # Initialize the dictionary
-    result_dict = {}
+        # Initialize the dictionary
+        result_dict = {}
 
-    for key, value in matches:
-        # Handle options separately
-        if key == 'options':
-            # Remove parentheses and split by comma
-            value = value.strip('()').split(',\n')
-            # Remove extra spaces and quotes
-            value = [option.strip().strip('"') for option in value]
-        else:
-            # Remove quotes from other values
-            value = value.strip('"')
-        result_dict[key] = value
+        for key, value in matches:
+            # Handle options separately
+            if key == 'options':
+                # Remove parentheses and split by comma
+                value = value.strip('()').split(',\n')
+                # Remove extra spaces and quotes
+                value = [option.strip().strip('"') for option in value]
+            else:
+                # Remove quotes from other values
+                value = value.strip('"')
+            result_dict[key] = value
 
-    # Print the resulting dictionary or convert to JSON
-    return result_dict
+        # Print the resulting dictionary or convert to JSON
+        return result_dict
+    else:
+        raise ValueError("The response is not completed successfully.")
 
 
 # text = extract_text_from_pdf("example.pdf")

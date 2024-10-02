@@ -79,16 +79,18 @@ def get_json(flashcards):
     ])
 
     response = chat_session.send_message(flashcards)
+    if response._done:  # Ensure the response is done
+        # Access the first candidate's content
+        text_content = response._result.candidates[0].content.parts[0].text
 
-    response = response.text
+        start = text_content.find("[")
+        end = text_content.rfind("]") + 1
+        text_content = text_content[start:end]
 
-    start = response.find("[")
-    end = response.rfind("]") + 1
-    response = response[start:end]
-
-    python_list = ast.literal_eval(response)
-
-    return python_list
+        python_list = ast.literal_eval(text_content)
+        return python_list
+    else:
+        raise ValueError("The response is not completed successfully.")
 
 
 def generate_flashcards(pdf_path):

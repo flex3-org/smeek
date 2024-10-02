@@ -69,8 +69,12 @@ def llama3_summarize(text):
     chat_session = model.start_chat(history=[])
 
     response = chat_session.send_message(text)
-
-    return response.text
+    if response._done:  # Ensure the response is done
+        # Access the first candidate's content
+        text_content = response._result.candidates[0].content.parts[0].text
+        return text_content
+    else:
+        raise ValueError("The response is not completed successfully.")
 
 
 # Main function to summarize a YouTube video

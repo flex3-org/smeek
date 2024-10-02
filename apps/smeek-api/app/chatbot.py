@@ -127,5 +127,12 @@ def get_chatbot_response(question):
     ])
 
     response = chat_session.send_message(question)
+    if response._done:  # Ensure the response is done
+        # Access the first candidate's content
+        text_content = response._result.candidates[0].content.parts[0].text
+
+        return text_content
+    else:
+        raise ValueError("The response is not completed successfully.")
 
     return response.text
