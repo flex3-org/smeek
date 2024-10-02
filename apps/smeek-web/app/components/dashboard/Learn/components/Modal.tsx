@@ -28,11 +28,14 @@ export default function Modal({ modalContent, closeModal }: any) {
   const getSummary = async () => {
     setLoading(true);
     try {
-      const res = await axios.get("http://127.0.0.1:8000/summary", {
-        params: {
-          url: modalContent.links[0]?.split("v=")[1],
-        },
-      });
+      const res = await axios.get(
+        "https://smeek3.jollydesert-73a8e64b.eastus.azurecontainerapps.io/summary",
+        {
+          params: {
+            url: modalContent.links[0]?.split("v=")[1],
+          },
+        }
+      );
       console.log(res.data);
       setSummary(res.data);
     } catch (err) {

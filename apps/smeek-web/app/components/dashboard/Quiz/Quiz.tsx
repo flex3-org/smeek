@@ -34,7 +34,7 @@ export default function Quiz() {
       formData.append("file", selectedFile);
 
       const res = await axios.post<QuizItem[]>(
-        "http://127.0.0.1:8000/quiz/",
+        "https://smeek3.jollydesert-73a8e64b.eastus.azurecontainerapps.io/quiz/",
         formData,
         {
           headers: {
