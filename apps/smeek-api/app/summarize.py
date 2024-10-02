@@ -7,6 +7,14 @@ import json
 import torch
 import os
 from transformers import pipeline
+import os
+import google.generativeai as genai
+from dotenv import load_dotenv
+
+load_dotenv()
+
+genai.configure(api_key=os.environ["GEMINI_API_KEY"])
+
 
 # Function to download audio from YouTube video
 def download_audio(youtube_url, audio_path):
@@ -16,60 +24,63 @@ def download_audio(youtube_url, audio_path):
         'noplaylist': True,
         'quiet': True
     }
-    
+
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         ydl.download([youtube_url])
+
 
 # Function to convert audio to text using Whisper
 def audio_to_text_whisper(audio_path):
     # Load audio file into a NumPy array
-    audio, sr = librosa.load(audio_path, sr=16000)  # Whisper expects 16kHz sampling rate
-    
+    audio, sr = librosa.load(audio_path,
+                             sr=16000)  # Whisper expects 16kHz sampling rate
+
     # Load the Whisper model
-    device = 0 if torch.cuda.is_available() else -1  # Use GPU if available, otherwise use CPU
-    transcriber = pipeline("automatic-speech-recognition", model="openai/whisper-base", device=device)
-    
+    device = 0 if torch.cuda.is_available(
+    ) else -1  # Use GPU if available, otherwise use CPU
+    transcriber = pipeline("automatic-speech-recognition",
+                           model="openai/whisper-base",
+                           device=device,
+                           return_timestamps=True)
+
     # Process audio array with Whisper
     result = transcriber({"array": audio, "sampling_rate": sr})
-    
+
     return result['text']
+
 
 # Function to summarize text using Llama3 from Ollama
 def llama3_summarize(text):
-    url = "http://localhost:11434/api/chat"  # Replace with the correct URL
 
-    prompt = f"""
-    You are an agent that takes transcript of a video and then write everything explained in the video in proper format by mentioning all important points.
-    here is the transcript:
-    {text}
-    """
-    
-    data = {
-        "model": "llama3",
-        "temperature": 0.0,
-        "messages": [
-            {
-                "role": "user",
-                "content": prompt
-            }
-        ],
-        "stream": False,
+    # Create the model
+    generation_config = {
+        "temperature": 1,
+        "top_p": 0.95,
+        "top_k": 64,
+        "max_output_tokens": 8192,
+        "response_mime_type": "text/plain",
     }
 
-    headers = {
-        "Content-Type": "application/json"
-    }
+    model = genai.GenerativeModel(
+        model_name="gemini-1.5-pro",
+        generation_config=generation_config,
+        # safety_settings = Adjust safety settings
+        # See https://ai.google.dev/gemini-api/docs/safety-settings
+        system_instruction=
+        "You are an agent that takes transcript of a video and then write everything explained in the video in proper format by mentioning all important points.",
+    )
 
-    response = requests.post(url, headers=headers, json=data)
-    response_json = response.json()
-    summary = response_json.get("message", {}).get("content", "")
+    chat_session = model.start_chat(history=[])
 
-    return summary
+    response = chat_session.send_message(text)
+
+    return response.text
+
 
 # Main function to summarize a YouTube video
 def summarize_youtube_video(youtube_url):
     audio_path = "temp_audio.wav"
-    
+
     # Download audio from YouTube video
     download_audio(youtube_url, audio_path)
     print("Audio downloaded")
@@ -77,7 +88,7 @@ def summarize_youtube_video(youtube_url):
     # Convert audio to text
     text = audio_to_text_whisper(audio_path)
     print("Converted from audio to text")
-    # print(text)
+    print(text)
 
     if os.path.exists(audio_path):
         os.remove(audio_path)
@@ -88,11 +99,12 @@ def summarize_youtube_video(youtube_url):
     # Summarize text using Llama3
     summary = llama3_summarize(text)
     print("Summarized")
-    
+
     return summary
 
-# # Example usage
-# if __name__ == "__main__":
-#     youtube_url = "https://www.youtube.com/watch?v=3-c4xJa7Flk&t=1466s"  # Replace with your YouTube video URL
-#     summary = summarize_youtube_video(youtube_url)
-#     print("Summary:", summary)
+
+# Example usage
+if __name__ == "__main__":
+    youtube_url = "https://www.youtube.com/watch?v=3-c4xJa7Flk&t=1466s"  # Replace with your YouTube video URL
+    summary = summarize_youtube_video(youtube_url)
+    print("Summary:", summary)
