@@ -16,19 +16,19 @@ export default function ChatSection() {
 
   const chat = async () => {
     try {
-      setLoading(true); // Set loading to true when starting request
+      setLoading(true);
+
       const res = await axios.post<{ response: string }>(
-        "http://127.0.0.1:8000/chat",
-        {
-          user_input: userInput,
-        }
+        `http://127.0.0.1:8000/chat?chat_input=${userInput}`
       );
 
+      // Update the messages state with both user and bot responses
       setMessages((prevMessages) => [
         ...prevMessages,
         { text: userInput, type: "user" },
         { text: res?.data?.response, type: "bot" },
       ]);
+
       setUserInput(""); // Clear input field
     } catch (err) {
       console.error(err);

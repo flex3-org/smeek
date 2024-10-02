@@ -6,7 +6,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 import ReactFlow, { MiniMap, Controls, Background } from "reactflow";
 import "reactflow/dist/style.css";
 import Modal from "./components/Modal";
-import { data } from "@/utils/data";
+import axios from "axios";
 
 interface CourseContent {
   index: number;
@@ -30,10 +30,13 @@ export default function Quiz() {
     setLoading(true);
 
     try {
-      // const res = await axios.get<CourseContent[]>("http://127.0.0.1:8000/coursecontents", {
-      //     params: { topic: topic }
-      // });
-      const fetchedData = data; // Fetch data correctly
+      const res = await axios.get<CourseContent[]>(
+        "http://127.0.0.1:8000/coursecontents",
+        {
+          params: { topic: topic },
+        }
+      );
+      const fetchedData = res.data; // Fetch data correctly
 
       // Create nodes with increased spacing between rows
       const newNodes = fetchedData.map((item, index) => ({
