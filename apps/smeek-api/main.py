@@ -18,6 +18,9 @@ app.add_middleware(
     allow_headers=["*"],  # Allows all headers
 )
 
+@app.get("/")
+async def healthcheck():
+    return JSONResponse(content={"status": "ok"}, media_type="application/json")
 
 @app.get("/coursecontents/")
 async def course_content(topic: str):
