@@ -46,20 +46,22 @@ def get_content(topic):
     ])
 
     response = chat_session.send_message(topic)
+    if response._done:  # Ensure the response is done
+        # Access the first candidate's content
+        text_content = response._result.candidates[0].content.parts[0].text
 
-    response = response.text
+        start = text_content.find("[")
+        end = text_content.rfind("]") + 1
+        text_content = text_content[start:end]
 
-    start = response.find("[")
-    end = response.rfind("]") + 1
-    response = response[start:end]
-
-    python_list = ast.literal_eval(response)
-
-    return python_list
+        python_list = ast.literal_eval(text_content)
+        return python_list
+    else:
+        raise ValueError("The response is not completed successfully.")
 
 
-response = get_content("Theory of Computation")
-print(type(response))
+# response = get_content("Theory of Computation")
+# print(response)
 
 
 def get_yt_links(topics):
@@ -80,12 +82,3 @@ def get_yt_links(topics):
         links.append(link_list)
 
     return links
-
-
-# topics = llama3("LLMOps")
-# print("Topics: ", topics)
-# print(type(topics))
-
-# links = get_yt_links(topics)
-# print("Links: ", links)
-# print(type(links))

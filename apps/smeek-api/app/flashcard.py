@@ -117,4 +117,4 @@ def generate_flashcards(pdf_path):
 
 
 # # testing...
-flashcards = generate_flashcards("example.pdf")
+# flashcards = generate_flashcards("example.pdf")

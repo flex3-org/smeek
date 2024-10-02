@@ -99,8 +99,8 @@ def summarize_youtube_video(youtube_url):
     return summary
 
 
-# Example usage
-if __name__ == "__main__":
-    youtube_url = "https://www.youtube.com/watch?v=3-c4xJa7Flk&t=1466s"  # Replace with your YouTube video URL
-    summary = summarize_youtube_video(youtube_url)
-    print("Summary:", summary)
+# # Example usage
+# if __name__ == "__main__":
+#     youtube_url = "https://www.youtube.com/watch?v=3-c4xJa7Flk&t=1466s"  # Replace with your YouTube video URL
+#     summary = summarize_youtube_video(youtube_url)
+#     print("Summary:", summary)
