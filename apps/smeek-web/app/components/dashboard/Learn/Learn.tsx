@@ -31,7 +31,7 @@ export default function Quiz() {
 
     try {
       const res = await axios.get<CourseContent[]>(
-        "https://smeek3.jollydesert-73a8e64b.eastus.azurecontainerapps.io/coursecontents",
+        "https://smeek3.jollydesert-73a8e64b.eastus.azurecontainerapps.io/coursecontents/",
         {
           params: { topic: topic },
         }
