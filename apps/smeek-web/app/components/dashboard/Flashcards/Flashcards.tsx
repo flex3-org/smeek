@@ -33,7 +33,7 @@ export default function Flashcards() {
       formData.append("file", selectedFile);
 
       const res = await axios.post<FlashcardItem[]>(
-        "https://smeek3.jollydesert-73a8e64b.eastus.azurecontainerapps.io/flashcards",
+        "https://smeek3.jollydesert-73a8e64b.eastus.azurecontainerapps.io/flashcards/",
         formData,
         {
           headers: {

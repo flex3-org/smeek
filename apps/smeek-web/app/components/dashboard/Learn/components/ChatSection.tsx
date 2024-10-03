@@ -19,7 +19,7 @@ export default function ChatSection() {
       setLoading(true);
 
       const res = await axios.post<{ response: string }>(
-        `https://smeek3.jollydesert-73a8e64b.eastus.azurecontainerapps.io/chat?chat_input=${userInput}`
+        `https://smeek3.jollydesert-73a8e64b.eastus.azurecontainerapps.io/chat/?chat_input=${userInput}`
       );
 
       // Update the messages state with both user and bot responses

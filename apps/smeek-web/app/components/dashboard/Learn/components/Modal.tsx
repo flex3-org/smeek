@@ -29,7 +29,7 @@ export default function Modal({ modalContent, closeModal }: any) {
     setLoading(true);
     try {
       const res = await axios.get(
-        "https://smeek3.jollydesert-73a8e64b.eastus.azurecontainerapps.io/summary",
+        "https://smeek3.jollydesert-73a8e64b.eastus.azurecontainerapps.io/summary/",
         {
           params: {
             url: modalContent.links[0]?.split("v=")[1],
