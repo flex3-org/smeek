@@ -3,7 +3,7 @@
 <h3 align="center">Smeek</h3>
 
 <p align="center">
-    Personalised AI mentor for learning
+    Personalised AI mentor for learning.
     <br />
     <br />
     <a href="#introduction"><strong>Introduction</strong></a> ·
